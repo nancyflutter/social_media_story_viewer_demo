@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_story_viewer_demo/story_example_page.dart';
 import 'package:story_view/story_view.dart';
 
 void main() => runApp(const MyApp());
@@ -110,22 +111,48 @@ class Home extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                // primary: Colors.green.shade600,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                      // primary: Colors.green.shade600,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    icon: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.blueGrey),
+                    label: const Text(
+                      "View More Stories",
+                      style: TextStyle(fontSize: 16, color: Colors.blueGrey),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MoreStories()));
+                    },
+                  ),
                 ),
-              ),
-              icon: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-              label: const Text(
-                "View More Stories",
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MoreStories()));
-              },
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                      // primary: Colors.green.shade600,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    icon: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.blueGrey),
+                    label: const Text(
+                      "StoryExamplePage",
+                      style: TextStyle(fontSize: 16, color: Colors.blueGrey),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const StoryExamplePage()));
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -168,6 +195,9 @@ class _MoreStoriesState extends State<MoreStories> {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
               child: AppBar(
+                automaticallyImplyLeading: true,
+                iconTheme: const IconThemeData(color: Colors.white),
+                actionsIconTheme: const IconThemeData(color: Colors.white),
                 title: const Text(
                   "More Stories",
                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
